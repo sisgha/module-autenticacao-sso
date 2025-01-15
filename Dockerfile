@@ -47,7 +47,7 @@ RUN pnpm build-keycloak-theme
 # ================================================================== #
 # Builder of keycloak with essential features                        #
 # ================================================================== #
-FROM quay.io/keycloak/keycloak:25.0 AS sso-builder
+FROM quay.io/keycloak/keycloak:26.1 AS sso-builder
 
 ENV KC_HEALTH_ENABLED=true
 ENV KC_METRICS_ENABLED=false
@@ -64,7 +64,7 @@ RUN /opt/keycloak/bin/kc.sh build --health-enabled=true
 # ================================================================== #
 # Runtime keycloak with theme and essential features                 #
 # ================================================================== #
-FROM quay.io/keycloak/keycloak:25.0 AS sso-runtime
+FROM quay.io/keycloak/keycloak:26.1 AS sso-runtime
 
 WORKDIR /opt/keycloak
 COPY --from=sso-builder /opt/keycloak/ /opt/keycloak/
